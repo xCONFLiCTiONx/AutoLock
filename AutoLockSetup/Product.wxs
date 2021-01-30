@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?define ProductVersion = "1.3.0.0"?>
+  <?define UpgradeCode = "056FFB68-3C41-44F9-9DB4-628225533BEA"?>
+  <?define AutoLock_TargetDir=$(var.TargetDir)..\Release\?>
+  <?define DesktopToast_TargetDir=$(var.TargetDir)..\Release\?>
+  <?define AutoLockService_TargetDir=$(var.TargetDir)..\Release\?>
+  <?define AutoLockHelper_TargetDir=$(var.TargetDir)..\Release\?>
+  <Product Id="*" Name="AutoLock" Language="1033" Version="$(var.ProductVersion)" Manufacturer="xCONFLiCTiONx" UpgradeCode="$(var.UpgradeCode)">
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" ></Property>
+    <WixVariable Id="WixUILicenseRtf" Value="$(var.TargetDir)..\License.rtf" />
+    <UIRef Id="WixUI_InstallDir"/>
+    <InstallExecuteSequence>
+      <Custom Action="InstallService" After="InstallFiles">(NOT Installed) AND (NOT REMOVE)</Custom>
+      <Custom Action="UninstallService" Before="RemoveFiles">(NOT UPGRADINGPRODUCTCODE) AND (REMOVE="ALL")</Custom>
+    </InstallExecuteSequence>
+    <CustomAction Id="InstallService" Return="check" Impersonate="no" Execute="deferred" Directory="INSTALLFOLDER" ExeCommand='"[INSTALLFOLDER]AutoLockHelper.exe" /install' />
+    <CustomAction Id="UninstallService" Return="check" Impersonate="no" Execute="deferred" Directory="INSTALLFOLDER" ExeCommand='"[INSTALLFOLDER]AutoLockHelper.exe" /uninstall' />
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <Upgrade Id="b6fc2010-7837-4f31-b7e8-437e8a3aac60"></Upgrade>
+    <MediaTemplate EmbedCab="yes" />
+    <Feature Id="ProductFeature" Title="AutoLock" Level="1">
+      <ComponentGroupRef Id="ProductComponents" />
+    </Feature>
+    <Property Id="PREVIOUSVERSIONSINSTALLED" Secure="yes" />
+    <Upgrade Id="$(var.UpgradeCode)">
+    </Upgrade>
+  </Product>
+
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFiles64Folder">
+        <Directory Id="INSTALLFOLDER" Name="AutoLock" />
+      </Directory>
+    </Directory>
+    <Icon Id="icon.ico" SourceFile="$(var.TargetDir)..\Release\Resources\LOCK.ico"/>
+    <Property Id="ARPPRODUCTICON" Value="icon.ico" />
+  </Fragment>
+
+  <Fragment>
+    <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      <Component Id="AutoLock.exe" Guid="ACF2C07E-36EA-4E77-9C89-5AADF43B0E43">
+        <File Id="AutoLock.exe" Name="AutoLock.exe" Source="$(var.AutoLock_TargetDir)AutoLock.exe" />
+      </Component>
+      <Component Id="AutoLock.exe.config" Guid="E72B25EB-DAE2-4592-915A-6AD0D5088070">
+        <File Id="AutoLock.exe.config" Name="AutoLock.exe.config" Source="$(var.AutoLock_TargetDir)AutoLock.exe.config" />
+      </Component>
+      <Component Id="EasyLogger.dll" Guid="F4BF9B57-8B48-4779-ADAB-D316A222D4C3">
+        <File Id="EasyLogger.dll" Name="EasyLogger.dll" Source="$(var.AutoLock_TargetDir)EasyLogger.dll" />
+      </Component>
+      <Component Id="NotificationsExtensions.Win10.dll" Guid="86770C87-4607-4589-8D43-B6219AFBD476">
+        <File Id="NotificationsExtensions.Win10.dll" Name="NotificationsExtensions.Win10.dll" Source="$(var.AutoLock_TargetDir)NotificationsExtensions.Win10.dll" />
+      </Component>
+      <Component Id="DesktopToast.dll" Guid="8A41B7FB-6D69-480D-A837-F66D67CD4E03">
+        <File Id="DesktopToast.dll" Name="DesktopToast.dll" Source="$(var.DesktopToast_TargetDir)DesktopToast.dll" />
+      </Component>
+      <Component Id="EasyLogger.xml" Guid="D8BD445D-7AAC-4DF8-8F96-B2F515403534">
+        <File Id="EasyLogger.xml" Name="EasyLogger.xml" Source="$(var.AutoLock_TargetDir)EasyLogger.xml" />
+      </Component>
+      <Component Id="AutoLockService.exe" Guid="732915BA-4B86-415D-A443-22AC620526CD">
+        <File Id="AutoLockService.exe" Name="AutoLockService.exe" Source="$(var.AutoLockService_TargetDir)AutoLockService.exe" />
+      </Component>
+      <Component Id="AutoLockService.exe.config" Guid="B06D9A6B-9652-4A95-9947-7F041D70AEB8">
+        <File Id="AutoLockService.exe.config" Name="AutoLockService.exe.config" Source="$(var.AutoLockService_TargetDir)AutoLockService.exe.config" />
+      </Component>
+      <Component Id="Microsoft.Win32.TaskScheduler.dll" Guid="96964B63-DB99-49B3-95E8-FE0153417BB5">
+        <File Id="Microsoft.Win32.TaskScheduler.dll" Name="Microsoft.Win32.TaskScheduler.dll" Source="$(var.AutoLockService_TargetDir)Microsoft.Win32.TaskScheduler.dll" />
+      </Component>
+      <Component Id="AutoLockHelper.exe" Guid="D84C2EB7-A417-41F9-B84C-0B8059BCD421">
+        <File Id="AutoLockHelper.exe" Name="AutoLockHelper.exe" Source="$(var.AutoLockHelper_TargetDir)AutoLockHelper.exe" />
+      </Component>
+      <Component Id="AutoLockHelper.exe.config" Guid="C31512F6-26EF-466C-B6BD-27555C8EE487">
+        <File Id="AutoLockHelper.exe.config" Name="AutoLockHelper.exe.config" Source="$(var.AutoLockHelper_TargetDir)AutoLockHelper.exe.config" />
+      </Component>
+      <Component Id="DesktopToast.png" Guid="104D9C42-A700-4A2D-82E8-FB97C930F0D9">
+        <File Id="DesktopToast.png" Name="DesktopToast.png" Source="$(var.AutoLock_TargetDir)DesktopToast.png" />
+      </Component>
+      <Component Id="AutoLockService.InstallLog" Guid="46058300-6A93-4BED-8A8B-42FFD204B67E">
+        <RemoveFile Id="AutoLockService.InstallLog" On="uninstall" Name="AutoLockService.InstallLog" />
+      </Component>
+      <Component Id="InstallUtil.InstallLog" Guid="5223608A-CF48-41EF-A327-589F31820DB6">
+        <RemoveFile Id="InstallUtil.InstallLog" On="uninstall" Name="InstallUtil.InstallLog" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+</Wix>

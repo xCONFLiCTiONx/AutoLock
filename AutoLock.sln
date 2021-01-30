@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesktopToast", "DesktopToast\DesktopToast.csproj", "{B8D704D5-FB0C-4C2D-8189-72C6649BA157}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoLock", "AutoLock\AutoLock.csproj", "{8345EEE8-04C9-4D26-9D6B-53D76D6444C7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{856FF910-D984-436F-A20E-F5471E1C82AC} = {856FF910-D984-436F-A20E-F5471E1C82AC}
+		{FEE81845-FC7F-428B-812D-500267572E59} = {FEE81845-FC7F-428B-812D-500267572E59}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoLockService", "AutoLockService\AutoLockService.csproj", "{856FF910-D984-436F-A20E-F5471E1C82AC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoLockHelper", "AutoLockHelper\AutoLockHelper.csproj", "{FEE81845-FC7F-428B-812D-500267572E59}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F4B8D856-BDAD-4447-A737-FE02653A1542}"
+	ProjectSection(SolutionItems) = preProject
+		AssemblyVersionInfo.cs = AssemblyVersionInfo.cs
+	EndProjectSection
+EndProject
+Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "AutoLockSetup", "AutoLockSetup\AutoLockSetup.wixproj", "{A8493A6D-55C2-453B-A8C0-75A7AD11937E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B8D704D5-FB0C-4C2D-8189-72C6649BA157}.Debug|x64.ActiveCfg = Debug|x64
+		{B8D704D5-FB0C-4C2D-8189-72C6649BA157}.Debug|x64.Build.0 = Debug|x64
+		{B8D704D5-FB0C-4C2D-8189-72C6649BA157}.Release|x64.ActiveCfg = Release|x64
+		{B8D704D5-FB0C-4C2D-8189-72C6649BA157}.Release|x64.Build.0 = Release|x64
+		{8345EEE8-04C9-4D26-9D6B-53D76D6444C7}.Debug|x64.ActiveCfg = Debug|x64
+		{8345EEE8-04C9-4D26-9D6B-53D76D6444C7}.Debug|x64.Build.0 = Debug|x64
+		{8345EEE8-04C9-4D26-9D6B-53D76D6444C7}.Release|x64.ActiveCfg = Release|x64
+		{8345EEE8-04C9-4D26-9D6B-53D76D6444C7}.Release|x64.Build.0 = Release|x64
+		{856FF910-D984-436F-A20E-F5471E1C82AC}.Debug|x64.ActiveCfg = Debug|x64
+		{856FF910-D984-436F-A20E-F5471E1C82AC}.Debug|x64.Build.0 = Debug|x64
+		{856FF910-D984-436F-A20E-F5471E1C82AC}.Release|x64.ActiveCfg = Release|x64
+		{856FF910-D984-436F-A20E-F5471E1C82AC}.Release|x64.Build.0 = Release|x64
+		{FEE81845-FC7F-428B-812D-500267572E59}.Debug|x64.ActiveCfg = Debug|x64
+		{FEE81845-FC7F-428B-812D-500267572E59}.Debug|x64.Build.0 = Debug|x64
+		{FEE81845-FC7F-428B-812D-500267572E59}.Release|x64.ActiveCfg = Release|x64
+		{FEE81845-FC7F-428B-812D-500267572E59}.Release|x64.Build.0 = Release|x64
+		{A8493A6D-55C2-453B-A8C0-75A7AD11937E}.Debug|x64.ActiveCfg = Debug|x64
+		{A8493A6D-55C2-453B-A8C0-75A7AD11937E}.Release|x64.ActiveCfg = Release|x64
+		{A8493A6D-55C2-453B-A8C0-75A7AD11937E}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {64FE8BB7-4F23-4489-B0FB-17C3608D936D}
+	EndGlobalSection
+EndGlobal
